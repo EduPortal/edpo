@@ -56,3 +56,9 @@ Route::post('/teacher/settings/change-password','TeacherSettingsController@chang
 
 Route::get('/teacher/classes','TeacherClassesController@classes');
 Route::post('/teacher/create-class','TeacherClassesController@create_class');
+Route::get('/teacher/classes/{slug}','TeacherClassesController@open_class');
+Route::post('/teacher/class/create-post','TeacherClassesController@create_post');
+Route::post('/teacher/classes/post/view_attachments','TeacherClassesController@view_attachments');
+Route::post('/teacher/class/post/create_comment','TeacherClassesController@create_comment');
+
+Route::get("/icons_pack" , "HomeController@icons");

@@ -10,6 +10,10 @@ class LearningClass extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
     protected $fillable = [
         'user_id', 'name', 'description', 'avatar', 'cover', 'code'
     ];

@@ -1692,12 +1692,12 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
-<script src="/edpo/js/custom.js"></script>
-
 <!-- Select / Sorting script -->
 <script src="/edpo/js/selectize.min.js"></script>
 
 @yield("in_page_scripts")
+
+<script src="/edpo/js/custom.js"></script>
 
 </body>
 

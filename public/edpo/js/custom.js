@@ -56,6 +56,9 @@ $(document).ready(function($) {
 		$("#avatar_form_mobile").submit();
 	});
 
+	if ($("#errors_occured").length) {
+		$("#add_new_class_modal").modal("show");
+	}
 
 	$("#save_hobby_information").click(function(event) {
 		var	hobbies                =     $("#hobbies").val();
@@ -97,7 +100,6 @@ $(document).ready(function($) {
 			console.log("error");
 		});
 	});
-
 
 	$("#change_password_btn").click(function(event) {
 		var email					=		$("#email").val();
@@ -174,6 +176,71 @@ $(document).ready(function($) {
 	$(".close").click(function(event) {
 		$(".alert").fadeOut();
 	});
+
+	$("#post_type").change(function(event) {
+		post_type = $("#post_type option:selected").val();
+		description = $("#post_description").val();
+		if (post_type != "none" && description != "") {
+
+			$("#post_btn").attr('disabled', false);
+			$("#post_btn").addClass('btn-primary');
+
+			if(post_type == "announcement" || post_type == "none"){
+				$("#attachments").hide("slow");
+			}
+			else{
+				$("#attachments").show("slow");
+			}
+		}
+		else{
+			$("#post_btn").attr('disabled', true);
+			$("#post_btn").removeClass('btn-primary');
+			$("#attachments").hide("slow");
+			return;
+		}
+	});
+
+	$("#post_btn").click(function(event) {
+		post_type = $("#post_type option:selected").val();
+		description = $("#post_description").val();
+
+		if (post_type == "none") {
+			showSingleError("Please select the post type.");
+			return;
+		}
+
+		if (description == "") {
+			showSingleError("Please write the description.");
+			return;
+		}
+
+		if (post_type != "none" && description != "") {
+			$("#post_form").submit();
+		}
+	});
+
+	$("#post_description").keyup(function(event) {
+		post_type = $("#post_type option:selected").val();
+		description = $("#post_description").val();
+		if (post_type != "none" && description != "") {
+
+			$("#post_btn").attr('disabled', false);
+			$("#post_btn").addClass('btn-primary');
+
+			if(post_type == "announcement" || post_type == "none"){
+				$("#attachments").hide("slow");
+			}
+			else{
+				$("#attachments").show("slow");
+			}
+		}
+		else{
+			$("#post_btn").attr('disabled', true);
+			$("#post_btn").removeClass('btn-primary');
+			$("#attachments").hide("slow");
+			return;
+		}
+	});
 });
 
 function showSuccessMessage(e) {
@@ -185,6 +252,17 @@ function showSuccessMessage(e) {
 	});
 }
 
+function showSuccessMessageNoty(e) {
+    new Noty({
+	    text: e,
+	    type: 'success',
+	    theme: 'sunset',
+	    progressBar: 'true',
+	    layout: 'bottomLeft',
+	    timeout: 5000,
+	}).show();
+}
+
 function showFirstMessage(e) {
     new Noty({
 	    text: e,
@@ -192,7 +270,7 @@ function showFirstMessage(e) {
 	    theme: 'sunset',
 	    progressBar: 'true',
 	    layout: 'bottomLeft',
-	    timeout: 10000,
+	    timeout: 5000,
 	}).show();
 }
 
@@ -204,7 +282,7 @@ function printErrorMsg(e) {
 		    theme: 'sunset',
 		    progressBar: 'true',
 		    layout: 'bottomLeft',
-		    timeout: 10000,
+		    timeout: 5000,
 		}).show();
     })
 }
@@ -216,7 +294,18 @@ function showSingleError(e) {
 	    theme: 'sunset',
 	    progressBar: 'true',
 	    layout: 'bottomLeft',
-	    timeout: 10000,
+	    timeout: 5000,
+	}).show();
+}
+
+function custom_promt(e , t) {
+    new Noty({
+	    text: e,
+	    type: 'info',
+	    theme: 'sunset',
+	    progressBar: 'true',
+	    layout: 'bottomLeft',
+	    timeout: t,
 	}).show();
 }
 
@@ -231,5 +320,70 @@ function getFlag() {
 	}
 }
 
+function view_attachments(id) {
 
+	$("#attachments_table").html("");
+	custom_promt("Please wait ..." , 1000);
+	call = getFlag()+"/classes/post/view_attachments";
 
+	$.ajax({
+		url: call,
+		type: 'POST',
+		headers: {
+            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+        },
+		data: { 'id' : id },
+	})
+	.done(function(result) {
+		if ($.isEmptyObject(result.errors)) {
+			for (var i = 0; i < result.length; i++) {
+				$("#attachments_table").append('<tr> <td><img src="/edpo/extensions/'+result[i].type+'.png" class="img-fluid"></td><td class="td">'+result[i].original_name+'</td><td class="td">'+result[i].size+'KB</td><td><a download="'+result[i].original_name+'" href="'+result[i].path+'"><button style="top: 15px;" type="button" class="btn btn-primary">Download</button></a></td></tr>');
+			}
+			$("#attachments_modal").modal("show");
+		}
+		else{
+			printErrorMsg(result.errors);
+		}
+	})
+	.fail(function() {
+		console.log("error");
+	});
+}
+
+function create_comment(post_id) {
+	var comment = $("#comment_"+post_id).val();
+	if (comment == "") {
+		showSingleError("Please write a comment.");
+	}
+	else{
+		var call = getFlag()+"/class/post/create_comment";
+
+		$.ajax({
+			url: call,
+			type: 'POST',
+			headers: {
+	            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+	        },
+			data: {'post_id' : post_id , 'comment' : comment},
+		})
+		.done(function(result) {
+			if ($.isEmptyObject(result.errors)) {
+				comment_item = '<li class="comment-item"> <div class="post__author author vcard inline-items"> <img src="'+result[0]+'" alt="author"> <div class="author-date"> <a class="h6 post__author-name fn" href="#">'+result[1]+'</a> <div class="post__date"> <time class="published" datetime="2004-07-24T18:18"> '+result[2]+' </time> </div></div></div><p>'+result[3]+'</p></li>';
+				$("#comment_box_"+post_id).append(comment_item);
+				$("#comment_"+post_id).val("");
+				$("#comment_counter_"+post_id).html(parseInt($("#comment_counter_"+post_id).html()) + 1);
+				showSuccessMessageNoty("Comment created, Successfully");
+			}
+			else{
+				printErrorMsg(result.errors);
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		});
+	}
+}
+
+function toggleComments(post_id) {
+	$(".comment_box_"+post_id).slideToggle("slow");
+}

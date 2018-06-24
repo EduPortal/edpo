@@ -18,6 +18,11 @@ class HomeController extends Controller
         return view('landing.main');
     }
 
+    public function icons()
+    {
+        return view('icons');
+    }
+
     public function verifying()
     {
         if (Auth::guard('student')->check()) {

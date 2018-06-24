@@ -1693,3 +1693,8 @@ function unserializeThisThing($thing)
 {
 	return unserialize(decrypt($thing));
 }
+
+function create_slug($string)
+{
+	return strtolower(str_replace(" ", "-", $string)."-".mt_rand(100,10000));
+}

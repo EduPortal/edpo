@@ -29,111 +29,81 @@
 
 @if(count($classes) > 0)
   @foreach($classes as $class)
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6">
           <div class="ui-block">
             <div class="friend-item">
-              <div class="friend-header-thumb">
-                <img src="/edpo/img/friend1.jpg" alt="friend">
+              <div class="friend-header-thumb clearfix" style="background: url({{$class->cover}}) no-repeat; height: 125px; background-size: cover; background-position-x: center;background-position-y: center;">
               </div>
 
               <div class="friend-item-content">
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <ul class="more-dropdown">
-                    <li>
-                      <a href="#">Report Profile</a>
-                    </li>
-                    <li>
-                      <a href="#">Block Profile</a>
-                    </li>
-                    <li>
-                      <a href="#">Turn Off Notifications</a>
-                    </li>
-                  </ul>
-                </div>
                 <div class="friend-avatar">
                   <div class="author-thumb">
-                    <img src="/edpo/img/avatar1.jpg" alt="author">
+                    <img class="img-fluid" src="{{$class->avatar}}" alt="avatar" style="min-height: 100px; min-width: 100px;">
                   </div>
                   <div class="author-content">
-                    <a href="#" class="h5 author-name">Nicholas Grissom</a>
-                    <div class="country">San Francisco, CA</div>
+                    <a href="/teacher/classes/{{$class->code}}" class="h5 author-name">{{$class->name}}</a>
+                    <div class="country">{{$class->code}}</div>
                   </div>
                 </div>
 
                 <div class="swiper-container swiper-swiper-unique-id-0 initialized swiper-container-horizontal" data-slide="fade" id="swiper-unique-id-0">
                   <div class="swiper-wrapper" style="width: 784px; transform: translate3d(-196px, 0px, 0px); transition-duration: 0ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1" style="width: 196px;">
                       <p class="friend-about" data-swiper-parallax="-500" style="transform: translate3d(-500px, 0px, 0px); transition-duration: 0ms;">
-                        Hi!, I’m Marina and I’m a Community Manager for “Gametube”. Gamer and full-time mother.
+                        {{substr($class->description, 0, 100)}}...
                       </p>
 
                       <div class="friend-since" data-swiper-parallax="-100" style="transform: translate3d(-100px, 0px, 0px); transition-duration: 0ms;">
-                        <span>Friends Since:</span>
-                        <div class="h6">December 2014</div>
+                        <span>Created at:</span>
+                        <div class="h6">{{$class->created_at->toDayDateTimeString()}}</div>
                       </div>
                     </div>
                     <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 196px;">
                       <div class="friend-count" data-swiper-parallax="-500" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">52</div>
-                          <div class="title">Friends</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">45</div>
+                          <div class="title">Students</div>
                         </a>
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">240</div>
-                          <div class="title">Photos</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">{{count($class->posts)}}</div>
+                          <div class="title">Posts</div>
                         </a>
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">16</div>
-                          <div class="title">Videos</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">78</div>
+                          <div class="title">Feedbacks</div>
                         </a>
                       </div>
                       <div class="control-block-button" data-swiper-parallax="-100" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                        <a href="#" class="btn btn-control bg-blue">
-                          <svg class="olymp-happy-face-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-face-icon"></use></svg>
-                        </a>
-
-                        <a href="#" class="btn btn-control bg-purple">
-                          <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                        </a>
-
+                        <a href="/teacher/classes/{{$class->code}}"><button class="btn btn-primary">View Class</button></a>
                       </div>
                     </div>
 
                     <div class="swiper-slide swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="1" style="width: 196px;">
                       <p class="friend-about" data-swiper-parallax="-500" style="transform: translate3d(500px, 0px, 0px); transition-duration: 0ms;">
-                        Hi!, I’m Marina and I’m a Community Manager for “Gametube”. Gamer and full-time mother.
+                        {{substr($class->description, 0, 100)}}...
                       </p>
 
                       <div class="friend-since" data-swiper-parallax="-100" style="transform: translate3d(100px, 0px, 0px); transition-duration: 0ms;">
-                        <span>Friends Since:</span>
-                        <div class="h6">December 2014</div>
+                        <span>Created at:</span>
+                        <div class="h6">{{$class->created_at->toDayDateTimeString()}}</div>
                       </div>
                     </div>
                   <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 196px;">
                       <div class="friend-count" data-swiper-parallax="-500" style="transform: translate3d(500px, 0px, 0px); transition-duration: 0ms;">
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">52</div>
-                          <div class="title">Friends</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">45</div>
+                          <div class="title">Students</div>
                         </a>
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">240</div>
-                          <div class="title">Photos</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">{{count($class->posts)}}</div>
+                          <div class="title">Posts</div>
                         </a>
-                        <a href="#" class="friend-count-item">
-                          <div class="h6">16</div>
-                          <div class="title">Videos</div>
+                        <a href="/teacher/class/{{$class->code}}" class="friend-count-item">
+                          <div class="h6">78</div>
+                          <div class="title">Feedbacks</div>
                         </a>
                       </div>
                       <div class="control-block-button" data-swiper-parallax="-100" style="transform: translate3d(100px, 0px, 0px); transition-duration: 0ms;">
-                        <a href="#" class="btn btn-control bg-blue">
-                          <svg class="olymp-happy-face-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-face-icon"></use></svg>
-                        </a>
-
-                        <a href="#" class="btn btn-control bg-purple">
-                          <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                        </a>
-
+                        <a href="/teacher/classes/{{$class->code}}"><button class="btn btn-primary">View Class</button></a>
                       </div>
                     </div></div>
 
@@ -153,64 +123,4 @@
 @endif
 
 @include('TeacherViews.components.responsive_sidebar')
-
-<div class="modal fade" id="add_new_class_modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Create New Class</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form method="post" action="/teacher/create-class" enctype="multipart/form-data">
-          @csrf
-          <div class="form-group">
-            <label class="control-label">Class name</label>
-            <input id="class_name" name="class_name" type="text" class="form-control" required autocomplete="off">
-            @if ($errors->has('class_name'))
-                <span class="invalid-feedback" style="display: block;">
-                    <strong>{{ $errors->first('class_name') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <label class="control-label">Class description</label>
-            <textarea class="form-control" id="class_description" name="class_description" rows="1"></textarea>
-            @if ($errors->has('class_description'))
-                <span class="invalid-feedback" style="display: block;">
-                    <strong>{{ $errors->first('class_description') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <label class="control-label">Avatar</label>
-            <input id="class_avatar" name="class_avatar" type="file" class="form-control">
-            @if ($errors->has('class_avatar'))
-                <span class="invalid-feedback" style="display: block;">
-                    <strong>{{ $errors->first('class_avatar') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <label class="control-label">Cover Photo</label>
-            <input id="class_cover_photo" name="class_cover_photo" type="file" class="form-control">
-            @if ($errors->has('class_cover_photo'))
-                <span class="invalid-feedback" style="display: block;">
-                    <strong>{{ $errors->first('class_cover_photo') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="form-group pull-right">
-            <button type="submit" class="btn btn-primary"><i class="icon-plus3"></i> Create</button>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
 @endsection
