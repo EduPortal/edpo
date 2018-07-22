@@ -78,10 +78,12 @@ class TeacherClassesController extends Controller
 
     public function open_class($slug)
     {
+        $pictures = [];
     	$comments_array = array();
     	$class = LearningClass::where('code' , $slug)->first();
+        $students = $class->students;
     	$teacher_information = Auth::user()->personal_information;
-    	$posts = $class->posts()->orderBy('posts.created_at' , 'desc')->take(11)->get();
+    	$posts = $class->posts()->orderBy('posts.created_at' , 'desc')->get();
 
     	foreach ($posts as $post) {
     		if (count($post->comments) > 0) {
@@ -108,7 +110,24 @@ class TeacherClassesController extends Controller
     		array_push($comments_array, $avatars_array);
     	}
 
-    	return view("TeacherViews.class" , compact('teacher_information' , 'class' , 'posts' , 'comments_array'));
+        foreach ($posts as $key => $post) {
+            if (count($pictures) < 10) {
+                if (count($post->attachments) > 0) {
+                    $pics = $post->attachments()
+                                 ->where("type" , "jpeg")
+                                 ->orWhere("type" , "jpg")
+                                 ->orWhere("type" , "png")
+                                 ->get();
+                    foreach ($pics as $key => $pic) {
+                        if (count($pictures) < 10) {
+                            array_push($pictures, $pic);
+                        }
+                    }
+                }
+            }
+        }
+
+    	return view("TeacherViews.class" , compact('teacher_information' , 'class' , 'posts' , 'comments_array' , 'students' , 'pictures'));
     }
 
     public function create_post(Request $request)
@@ -193,7 +212,7 @@ class TeacherClassesController extends Controller
         		$avatar = "/images/".Auth::user()->gender.".png";
         	}
 
-        	$created_at = $comment->created_at->diffForHumans();
+        	$created_at = $comment->created_at->toDayDateTimeString();
         	$name = Auth::user()->first_name." ".Auth::user()->last_name;
 
         	array_push($response_array, $avatar, $name, $created_at, $request->comment);

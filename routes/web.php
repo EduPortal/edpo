@@ -61,4 +61,15 @@ Route::post('/teacher/class/create-post','TeacherClassesController@create_post')
 Route::post('/teacher/classes/post/view_attachments','TeacherClassesController@view_attachments');
 Route::post('/teacher/class/post/create_comment','TeacherClassesController@create_comment');
 
+Route::get('/student/classes','StudentClassesController@classes');
+Route::post('/student/class/join','StudentClassesController@join_class');
+Route::get('/student/classes/{slug}','StudentClassesController@open_class');
+Route::post('/student/classes/post/view_attachments','StudentClassesController@view_attachments');
+Route::post('/student/class/post/create_comment','StudentClassesController@create_comment');
+Route::get('/profile/{id}','StudentSettingsController@profile');
+
+
+
+
+
 Route::get("/icons_pack" , "HomeController@icons");

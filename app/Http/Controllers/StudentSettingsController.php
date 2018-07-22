@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Hobby;
 use App\PersonalInformation;
 use App\SecurityQuestion;
@@ -195,5 +196,13 @@ class StudentSettingsController extends Controller
 
         Session::flash('success' , 'Your password has been updated, Successfully!');
         return back();
+    }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        $hobbies_and_interests = $user->hobby;
+        $student_information = $user->personal_information;
+        return view("StudentViews.about" , compact('user' , 'student_information' , 'hobbies_and_interests'));
     }
 }

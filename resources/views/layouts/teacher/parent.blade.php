@@ -30,11 +30,10 @@
         });
     </script>
 
-    <link href="/edpo/css/icomoon.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <!-- Styles for plugins -->
     <link rel="stylesheet" type="text/css" href="/edpo/css/jquery.mCustomScrollbar.min.css">
-
 
     <!-- Bootstrap CSS -->
     <!-- Bootstrap CSS -->
@@ -45,7 +44,8 @@
     <!-- Theme Styles CSS -->
     <link rel="stylesheet" type="text/css" href="/edpo/css/theme-styles.css">
     <link rel="stylesheet" type="text/css" href="/edpo/css/blocks.css">
-    <link rel="stylesheet" type="text/css" href="/edpo/css/fonts.css">    
+    <link rel="stylesheet" type="text/css" href="/edpo/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/edpo/css/icomoon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
 
     @yield("in_page_stylesheets")
@@ -189,7 +189,7 @@
       </div>
 
       <div class="ui-block-title ui-block-title-small">
-        <h6 class="title">MAIN SECTIONS</h6>
+        <h6 class="title">Menu</h6>
       </div>
 
       <ul class="left-menu">
@@ -226,27 +226,17 @@
       </ul>
 
       <div class="ui-block-title ui-block-title-small">
-        <h6 class="title">YOUR ACCOUNT</h6>
+        <h6 class="title">ACCOUNT</h6>
       </div>
 
       <ul class="account-settings">
         <li>
-          <a href="#">
-
-            <svg class="olymp-menu-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-menu-icon"></use></svg>
-
-            <span>Profile Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
+          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <svg class="olymp-logout-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-logout-icon"></use></svg>
-
             <span>Log Out</span>
           </a>
         </li>
       </ul>
-
     </div>
   </div>
 </div>
@@ -1009,17 +999,6 @@
             <div class="mCustomScrollbar" data-mcs-theme="dark">
 
               <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">Join Class</h6>
-              </div>
-
-              <form class="form-group with-button custom-status">
-                <input class="form-control" placeholder="Class code" type="text">
-                <button class="bg-purple">
-                  <svg class="olymp-check-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-check-icon"></use></svg>
-                </button>
-              </form>
-
-              <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">Your Account</h6>
               </div>
 
@@ -1549,7 +1528,7 @@
           @csrf
           <div class="form-group">
             <label class="control-label">Class name</label>
-            <input id="class_name" name="class_name" type="text" class="form-control" required autocomplete="off">
+            <input id="class_name" name="class_name" type="text" class="form-control" required autocomplete="off" value="{{old('class_name')}}">
             @if ($errors->has('class_name'))
                 <span class="invalid-feedback" style="display: block;">
                   <strong>{{ $errors->first('class_name') }}</strong>
@@ -1558,7 +1537,7 @@
           </div>
           <div class="form-group">
             <label class="control-label">Class description</label>
-            <textarea class="form-control" id="class_description" name="class_description" rows="1"></textarea>
+            <textarea class="form-control" id="class_description" name="class_description" rows="1">{{old('class_description')}}</textarea>
             @if ($errors->has('class_description'))
                 <span class="invalid-feedback" style="display: block;">
                     <strong>{{ $errors->first('class_description') }}</strong>
@@ -1597,7 +1576,7 @@
 @endif
 
 <!-- jQuery first, then Other JS. -->
-<script src="/edpo/js/jquery-3.2.0.min.js"></script>
+<script src="/js/app.js"></script>
 <!-- Js effects for material design. + Tooltips -->
 <script src="/edpo/js/material.min.js"></script>
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
@@ -1605,11 +1584,11 @@
 <!-- Init functions -->
 <script src="/edpo/js/main.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/edpo/js/sweetalert.js"></script>
+
+<script type="text/javascript" src="/edpo/js/noty.js"></script>
 
 <script src="/edpo/js/moment.min.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
 <!-- Select / Sorting script -->
 <script src="/edpo/js/selectize.min.js"></script>

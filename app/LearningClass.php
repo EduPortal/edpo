@@ -14,6 +14,10 @@ class LearningClass extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function students(){
+        return $this->belongsToMany(User::class);
+    }
+
     protected $fillable = [
         'user_id', 'name', 'description', 'avatar', 'cover', 'code'
     ];

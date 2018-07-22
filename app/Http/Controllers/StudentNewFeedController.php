@@ -18,7 +18,7 @@ class StudentNewFeedController extends Controller
 
     public function index()
     {
-    	return view('StudentViews.newsfeed');
+    	return "Student";
     }
 
 }

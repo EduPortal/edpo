@@ -45,6 +45,7 @@
     <link rel="stylesheet" type="text/css" href="/edpo/css/theme-styles.css">
     <link rel="stylesheet" type="text/css" href="/edpo/css/blocks.css">
     <link rel="stylesheet" type="text/css" href="/edpo/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/edpo/css/icomoon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
 
     @yield("in_page_stylesheets")
@@ -52,6 +53,27 @@
     <style type="text/css">
       .swal-button{
         background: #ff5e3a;
+      }
+
+      #join_class_btn {
+        padding: 2%; font-size: 20px;
+      }
+
+      #class_code{
+        border: none;
+        border-bottom-width: medium;
+        border-bottom-style: none;
+        border-bottom-color: currentcolor;
+        border-bottom: 1px solid lightgrey;
+        padding: 10%;
+        font-size: 60px;
+        text-align: center;
+      }
+
+      @media only screen and (max-width: 600px) {
+          #class_code{
+            font-size: 30px;
+          }
       }
     </style>
 </head>
@@ -75,57 +97,27 @@
       <ul class="left-menu">
         <li>
           <a href="#" class="js-sidebar-open">
-            <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU"><use xlink:href="/edpo/icons/icons.svg#olymp-menu-icon"></use></svg>
+            <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right" data-original-title="OPEN MENU"><use xlink:href="/edpo/icons/icons.svg#olymp-menu-icon"></use></svg>
           </a>
         </li>
         <li>
-          <a href="03-Newsfeed.html">
-            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
+          <a href="/student/news-feed">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
           </a>
         </li>
         <li>
-          <a href="16-FavPagesFeed.html">
-            <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/edpo/icons/icons.svg#olymp-star-icon"></use></svg>
+          <a href="/student/classes">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
           </a>
         </li>
         <li>
-          <a href="17-FriendGroups.html">
-            <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
+          <a data-toggle="modal" data-target="#join_class_modal" href="javascript;">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="JOIN CLASS"><use xlink:href="/edpo/icons/icons.svg#olymp-accordion-open-icon"></use></svg>
           </a>
         </li>
         <li>
-          <a href="18-MusicAndPlaylists.html">
-            <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/edpo/icons/icons.svg#olymp-headphones-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="19-WeatherWidget.html">
-            <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/edpo/icons/icons.svg#olymp-weather-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-            <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/edpo/icons/icons.svg#olymp-calendar-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="24-CommunityBadges.html">
-            <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/edpo/icons/icons.svg#olymp-badge-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="25-FriendsBirthday.html">
-            <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/edpo/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="26-Statistics.html">
-            <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/edpo/icons/icons.svg#olymp-stats-icon"></use></svg>
-          </a>
-        </li>
-        <li>
-          <a href="27-ManageWidgets.html">
-            <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/edpo/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
+          <a href="/student/settings/profile">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="SETTINGS"><use xlink:href="/edpo/icons/icons.svg#olymp-settings-icon"></use></svg>
           </a>
         </li>
       </ul>
@@ -147,82 +139,30 @@
           </a>
         </li>
         <li>
-          <a href="03-Newsfeed.html">
-            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
+          <a href="/student/news-feed">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Newsfeed</span>
           </a>
         </li>
         <li>
-          <a href="16-FavPagesFeed.html">
-            <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/edpo/icons/icons.svg#olymp-star-icon"></use></svg>
-            <span class="left-menu-title">Fav Pages Feed</span>
+          <a href="/student/classes">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
+            <span class="left-menu-title">My Classes</span>
           </a>
         </li>
         <li>
-          <a href="17-FriendGroups.html">
-            <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
-            <span class="left-menu-title">Friend Groups</span>
+          <a data-toggle="modal" data-target="#join_class_modal" href="javascript;">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="JOIN CLASS"><use xlink:href="/edpo/icons/icons.svg#olymp-accordion-open-icon"></use></svg>
+            <span class="left-menu-title">Join Class</span>
           </a>
         </li>
         <li>
-          <a href="18-MusicAndPlaylists.html">
-            <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/edpo/icons/icons.svg#olymp-headphones-icon"></use></svg>
-            <span class="left-menu-title">Music & Playlists</span>
-          </a>
-        </li>
-        <li>
-          <a href="19-WeatherWidget.html">
-            <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/edpo/icons/icons.svg#olymp-weather-icon"></use></svg>
-            <span class="left-menu-title">Weather App</span>
-          </a>
-        </li>
-        <li>
-          <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-            <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/edpo/icons/icons.svg#olymp-calendar-icon"></use></svg>
-            <span class="left-menu-title">Calendar and Events</span>
-          </a>
-        </li>
-        <li>
-          <a href="24-CommunityBadges.html">
-            <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/edpo/icons/icons.svg#olymp-badge-icon"></use></svg>
-            <span class="left-menu-title">Community Badges</span>
-          </a>
-        </li>
-        <li>
-          <a href="25-FriendsBirthday.html">
-            <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/edpo/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-            <span class="left-menu-title">Friends Birthdays</span>
-          </a>
-        </li>
-        <li>
-          <a href="26-Statistics.html">
-            <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/edpo/icons/icons.svg#olymp-stats-icon"></use></svg>
-            <span class="left-menu-title">Account Stats</span>
-          </a>
-        </li>
-        <li>
-          <a href="27-ManageWidgets.html">
-            <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/edpo/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
-            <span class="left-menu-title">Manage Widgets</span>
+          <a href="/student/settings/profile">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="SETTINGS"><use xlink:href="/edpo/icons/icons.svg#olymp-settings-icon"></use></svg>
+            <span class="left-menu-title">Settings</span>
           </a>
         </li>
       </ul>
-
-      <div class="profile-completion">
-
-        <div class="skills-item">
-          <div class="skills-item-info">
-            <span class="skills-item-title">Profile Completion</span>
-            <span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="76" data-from="0"></span><span class="units">76%</span></span>
-          </div>
-          <div class="skills-item-meter">
-            <span class="skills-item-meter-active bg-primary" style="width: 76%"></span>
-          </div>
-        </div>
-
-        <span>Complete <a href="#">your profile</a> so people can know more about you!</span>
-
-      </div>
     </div>
   </div>
 </div>
@@ -270,7 +210,7 @@
       </div>
 
       <div class="ui-block-title ui-block-title-small">
-        <h6 class="title">MAIN SECTIONS</h6>
+        <h6 class="title">Menu</h6>
       </div>
 
       <ul class="left-menu">
@@ -281,116 +221,43 @@
           </a>
         </li>
         <li>
-          <a href="mobile-index.html">
-            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
+          <a href="/student/news-feed">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Newsfeed</span>
           </a>
         </li>
         <li>
-          <a href="Mobile-28-YourAccount-PersonalInformation.html">
-            <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/edpo/icons/icons.svg#olymp-star-icon"></use></svg>
-            <span class="left-menu-title">Fav Pages Feed</span>
+          <a href="/student/classes">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
+            <span class="left-menu-title">My Classes</span>
           </a>
         </li>
         <li>
-          <a href="mobile-29-YourAccount-AccountSettings.html">
-            <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
-            <span class="left-menu-title">Friend Groups</span>
+          <a data-toggle="modal" data-target="#join_class_modal" href="javascript;">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="JOIN CLASS"><use xlink:href="/edpo/icons/icons.svg#olymp-accordion-open-icon"></use></svg>
+            <span class="left-menu-title">Join Class</span>
           </a>
         </li>
         <li>
-          <a href="Mobile-30-YourAccount-ChangePassword.html">
-            <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/edpo/icons/icons.svg#olymp-headphones-icon"></use></svg>
-            <span class="left-menu-title">Music & Playlists</span>
-          </a>
-        </li>
-        <li>
-          <a href="Mobile-31-YourAccount-HobbiesAndInterests.html">
-            <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/edpo/icons/icons.svg#olymp-weather-icon"></use></svg>
-            <span class="left-menu-title">Weather App</span>
-          </a>
-        </li>
-        <li>
-          <a href="Mobile-32-YourAccount-EducationAndEmployement.html">
-            <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/edpo/icons/icons.svg#olymp-calendar-icon"></use></svg>
-            <span class="left-menu-title">Calendar and Events</span>
-          </a>
-        </li>
-        <li>
-          <a href="Mobile-33-YourAccount-Notifications.html">
-            <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/edpo/icons/icons.svg#olymp-badge-icon"></use></svg>
-            <span class="left-menu-title">Community Badges</span>
-          </a>
-        </li>
-        <li>
-          <a href="Mobile-34-YourAccount-ChatMessages.html">
-            <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/edpo/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-            <span class="left-menu-title">Friends Birthdays</span>
-          </a>
-        </li>
-        <li>
-          <a href="Mobile-35-YourAccount-FriendsRequests.html">
-            <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/edpo/icons/icons.svg#olymp-stats-icon"></use></svg>
-            <span class="left-menu-title">Account Stats</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/edpo/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
-            <span class="left-menu-title">Manage Widgets</span>
+          <a href="/student/settings/profile">
+            <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="SETTINGS"><use xlink:href="/edpo/icons/icons.svg#olymp-settings-icon"></use></svg>
+            <span class="left-menu-title">Settings</span>
           </a>
         </li>
       </ul>
 
       <div class="ui-block-title ui-block-title-small">
-        <h6 class="title">YOUR ACCOUNT</h6>
+        <h6 class="title">ACCOUNT</h6>
       </div>
 
       <ul class="account-settings">
         <li>
-          <a href="#">
-
-            <svg class="olymp-menu-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-menu-icon"></use></svg>
-
-            <span>Profile Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
+          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <svg class="olymp-logout-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-logout-icon"></use></svg>
-
             <span>Log Out</span>
           </a>
         </li>
       </ul>
-
-      <div class="ui-block-title ui-block-title-small">
-        <h6 class="title">About Olympus</h6>
-      </div>
-
-      <ul class="about-olympus">
-        <li>
-          <a href="#">
-            <span>Terms and Conditions</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>FAQs</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Careers</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span>Contact</span>
-          </a>
-        </li>
-      </ul>
-
     </div>
   </div>
 </div>
@@ -1153,17 +1020,6 @@
             <div class="mCustomScrollbar" data-mcs-theme="dark">
 
               <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">Join Class</h6>
-              </div>
-
-              <form class="form-group with-button custom-status">
-                <input class="form-control" placeholder="Class code" type="text">
-                <button class="bg-purple">
-                  <svg class="olymp-check-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-check-icon"></use></svg>
-                </button>
-              </form>
-
-              <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">Your Account</h6>
               </div>
 
@@ -1675,10 +1531,37 @@
 
 </div>
 
+</div>
+
+<div class="modal fade" id="join_class_modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Join Class</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-group">
+          <input id="class_code" name="class_code" type="text" autocomplete="off" placeholder="Class Code">
+        </div>
+        <div class="form-group">
+          <button id="join_class_btn" type="button" class="btn btn-primary btn-block btn-lg">JOIN NOW</button>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+@if(count($errors) > 0)
+  <span id="errors_occured"></span>
+@endif
 
 <!-- jQuery first, then Other JS. -->
-<script src="/edpo/js/jquery-3.2.0.min.js"></script>
+<script src="/js/app.js"></script>pt>
 <!-- Js effects for material design. + Tooltips -->
 <script src="/edpo/js/material.min.js"></script>
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
@@ -1686,11 +1569,11 @@
 <!-- Init functions -->
 <script src="/edpo/js/main.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/edpo/js/sweetalert.js"></script>
+
+<script type="text/javascript" src="/edpo/js/noty.js"></script>
 
 <script src="/edpo/js/moment.min.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
 <!-- Select / Sorting script -->
 <script src="/edpo/js/selectize.min.js"></script>

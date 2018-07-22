@@ -279,7 +279,8 @@
 </body>
 
 <!-- jQuery first, then Other JS. -->
-<script src="edpo/js/jquery-3.2.0.min.js"></script>
+<!-- <script src="edpo/js/jquery-3.2.0.min.js"></script> -->
+<script src="/js/app.js"></script>
 <!-- Js effects for material design. + Tooltips -->
 <script src="edpo/js/material.min.js"></script>
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->

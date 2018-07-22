@@ -141,7 +141,7 @@
                               <a class="h6 post__author-name fn" href="/teacher/profile">{{$post->learning_class->user->first_name}} {{$post->learning_class->user->last_name}}</a> created a <a class="h6 post__author-name fn" href="/class/post/{{$class->code}}/{{$post->id}}">{{$post->type}}</a>
                               <div class="post__date">
                                  <time class="published" datetime="2017-03-24T18:18">
-                                    {{$post->created_at->diffForHumans()}}
+                                    {{$post->created_at->toDayDateTimeString()}}
                                  </time>
                               </div>
                            </div>
@@ -210,7 +210,7 @@
                                     <a class="h6 post__author-name fn" href="#">{{$comment->user->first_name}} {{$comment->user->last_name}}</a>
                                     <div class="post__date">
                                        <time class="published" datetime="2004-07-24T18:18">
-                                          {{$comment->created_at->diffForHumans()}}
+                                          {{$comment->created_at->toDayDateTimeString()}}
                                        </time>
                                     </div>
                                  </div>
@@ -264,7 +264,7 @@
                <!-- W-Personal-Info -->
                <ul class="widget w-personal-info item-block">
                   <li>
-                     <span class="title">About Me:</span>
+                     <span class="title">About:</span>
                      <span class="text">{{$class->description}}</span>
                   </li>
                   <li>
@@ -285,56 +285,20 @@
       <div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
          <div class="ui-block">
             <div class="ui-block-title">
-               <h6 class="title">Last Photos</h6>
+               <h6 class="title">Latest Photos</h6>
             </div>
             <div class="ui-block-content">
                <!-- W-Latest-Photo -->
                <ul class="widget w-last-photo js-zoom-gallery">
-                  <li>
-                     <a href="img/last-photo10-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-photo10-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot11-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot11-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot12-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot12-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot13-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot13-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot14-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot14-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot15-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot15-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot16-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot16-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot17-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot17-large.jpg" alt="photo">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="img/last-phot18-large.jpg">
-                     <img class="img-fluid" src="/edpo/img/last-phot18-large.jpg" alt="photo">
-                     </a>
-                  </li>
+                  @if(count($pictures))
+                     @foreach($pictures as $picture)
+                     <li>
+                        <a href="{{$picture->path}}" target="_blank">
+                           <img class="img-fluid" src="{{$picture->path}}" alt="photo">
+                        </a>
+                     </li>
+                     @endforeach
+                  @endif
                </ul>
                <!-- .. end W-Latest-Photo -->
             </div>
@@ -342,84 +306,33 @@
 
          <div class="ui-block">
             <div class="ui-block-title">
-               <h6 class="title">Friends (86)</h6>
+               <h6 class="title">Students ({{count($students)}})</h6>
             </div>
             <div class="ui-block-content">
                <!-- W-Faved-Page -->
                <ul class="widget w-faved-page js-zoom-gallery">
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar38-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar24-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar36-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar35-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar34-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar33-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar32-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar31-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar30-sm.jpg" alt="author">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar29-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar28-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar27-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar26-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">
-                     <img class="img-fluid" src="/edpo/img/avatar25-sm.jpg" alt="user">
-                     </a>
-                  </li>
-                  <li class="all-users">
-                     <a href="#">+74</a>
-                  </li>
+                  @if(count($students) > 0)
+                     @foreach($students as $key => $student)
+                        @if($key < 24)
+                           <li>
+                              <a href="#">
+                                 @if(isset($student->personal_information->avatar))
+                                    <img title="{{$student->first_name}} {{$student->last_name}}" class="img-fluid" src="{{$student->personal_information->avatar}}" alt="author">
+                                 @else
+                                    <img title="{{$student->first_name}} {{$student->last_name}}" class="img-fluid" src="/images/{{$student->gender}}.png" alt="author">
+                                 @endif
+                              </a>
+                           </li>
+                        @endif
+                     @endforeach
+                  @if($key > 23)
+                     <li class="all-users">
+                        <a href="#">+{{count($students) - 24}}</a>
+                     </li>
+                  @endif
+                  @else
+                     <button class="btn btn-primary btn-sm">Invite Students</button>
+                  @endif
                </ul>
                <!-- .. end W-Faved-Page -->
             </div>
