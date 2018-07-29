@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attachment;
 use App\Comment;
 use App\LearningClass;
+use App\Notifications\PostCreated;
 use App\Post;
 use App\User;
 use Auth;
@@ -132,26 +133,23 @@ class TeacherClassesController extends Controller
 
     public function create_post(Request $request)
     {
+        $class = LearningClass::find($request->class_id);
     	$validator = Validator::make($request->all(), [
             'description'        		=>      'required|string|max:1000',
             'post_type'         		=>      'required|string',
         ]);
-
         $validator->validate();
 
     	if ($request->has("attachments")) {
     		$validator_files = Validator::make($request->all(), [
 	            'attachments.*' => 'mimes:txt,pdf,xls,xlsx,doc,docx,ppt,pptx,pps,jpeg,jpg,bmp,png|max:25000',
 	        ]);
-
 	        $validator_files->validate();
-
 	        $post = Post::create([
 			    		'learning_class_id' => $request->class_id,
 			    		'description' => $request->description,
 			    		'type' => $request->post_type,
 			    	]);
-
 	    	foreach ($request->attachments as $key => $attachment) {
 	    		$original_name 	= 	$attachment->getClientOriginalName();
 	    		$file_size  	= 	$attachment->getClientSize();
@@ -169,13 +167,22 @@ class TeacherClassesController extends Controller
 		        	'type' => $file_extension,
 		        ]);
 	    	}
+
+            foreach ($class->students as $key => $student) {
+                $student->notify(new PostCreated(Auth::user() , $class , $student , $post , count($request->attachments)));
+            }
     	}
     	else{
-    		Post::create([
-	    		'learning_class_id' => $request->class_id,
-	    		'description' => $request->description,
-	    		'type' => $request->post_type,
-	    	]);
+
+    		$post = Post::create([
+        	    		'learning_class_id' => $request->class_id,
+        	    		'description' => $request->description,
+        	    		'type' => $request->post_type,
+        	    	]);
+
+            foreach ($class->students as $key => $student) {
+                $student->notify(new PostCreated($class , $student , $post , 0));
+            }
     	}
 
     	Session::flash("success" , "Post created, Successfully!");

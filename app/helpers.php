@@ -1698,3 +1698,8 @@ function create_slug($string)
 {
 	return strtolower(str_replace(" ", "-", $string)."-".mt_rand(100,10000));
 }
+
+function get_user_notifications()
+{
+	return Auth::user()->unreadnotifications;
+}

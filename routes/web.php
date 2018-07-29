@@ -68,6 +68,8 @@ Route::post('/student/classes/post/view_attachments','StudentClassesController@v
 Route::post('/student/class/post/create_comment','StudentClassesController@create_comment');
 Route::get('/profile/{id}','StudentSettingsController@profile');
 
+Route::get('/notifications/{id}','StudentNotificationsController@view_notification');
+
 
 
 

@@ -1,0 +1,15 @@
+.control-icon .notification-list .notification-event{
+	width: 88% !important;
+}
+
+.notification_li{
+	padding: 10px 15px !important;
+}
+
+.notification-list a{
+	color: #6C6C6C !important;
+}
+
+.notification-list a:hover{
+	color: #ff5e3a !important;
+}
