@@ -13,3 +13,19 @@
 .notification-list a:hover{
 	color: #ff5e3a !important;
 }
+
+.author-thumb img{
+	height: 100% !important;
+}
+
+.more-dropdown a{
+	font-weight: normal !important;
+	font-size: 14px !important;
+}
+
+.td{
+	font-size: 23px !important;
+	vertical-align: middle !important;
+	font-family: Calibri !important;
+	font-weight: lighter !important;
+}

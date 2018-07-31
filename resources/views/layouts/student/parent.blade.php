@@ -895,7 +895,10 @@
       <div class="control-icon more has-items">
         <svg class="olymp-thunder-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-thunder-icon"></use></svg>
 
-        <div class="label-avatar bg-primary">8</div>
+        @if(count(get_all_user_notifications()) > 0)
+          <div class="label-avatar bg-primary">{{count(get_all_user_notifications())}}</div>
+        @endif
+        
 
         <div class="more-dropdown more-with-triangle triangle-top-center">
           <div class="ui-block-title ui-block-title-small">
@@ -908,11 +911,11 @@
               <a href="/notifications/{{$notification->id}}">
                 <li class="notification_li">
                   <div class="author-thumb">
-                      <img src="/edpo/img/avatar62-sm.jpg" alt="author">
+                      <img src="{{$notification->data['class']['avatar']}}" alt="author">
                   </div>
                   <div class="notification-event">
-                    <div><b>{{$notification->data['user']['first_name']}} {{$notification->data['user']['last_name']}}</b> commented on your new profile status.</div>
-                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
+                    <div><b>{{$notification->data['teacher']['first_name']}} {{$notification->data['teacher']['last_name']}}</b> created a new <b>{{$notification->data['post']['type']}}</b> in <b>{{$notification->data['class']['name']}}</b>.</div>
+                    <span class="notification-date"><time class="entry-date updated">{{\Carbon\Carbon::parse($notification->data['post']['created_at'])->diffForHumans()}}</time></span>
                   </div>
                 </li>
               </a>
@@ -1109,18 +1112,18 @@
 
         <ul class="notification-list">
           @foreach(get_user_notifications() as $notification)
-          <a href="/notifications/{{$notification->id}}">
-            <li class="notification_li">
-              <div class="author-thumb">
-                  <img src="" alt="author">
-              </div>
-              <div class="notification-event">
-                <div><b>{{$notification}}</b> commented on your new profile status.</div>
-                <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-              </div>
-            </li>
-          </a>
-          @endforeach
+            <a href="/notifications/{{$notification->id}}">
+              <li class="notification_li">
+                <div class="author-thumb">
+                    <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                </div>
+                <div class="notification-event">
+                  <div><b>{{$notification->data['teacher']['first_name']}} {{$notification->data['teacher']['last_name']}}</b> created a new <b>{{$notification->data['post']['type']}}</b> in <b>{{$notification->data['class']['name']}}</b>.</div>
+                  <span class="notification-date"><time class="entry-date updated">{{\Carbon\Carbon::parse($notification->data['post']['created_at'])->diffForHumans()}}</time></span>
+                </div>
+              </li>
+            </a>
+            @endforeach
         </ul>
         <a href="#" class="view-all bg-primary">View All Notifications</a>
       </div>
@@ -1391,7 +1394,7 @@
 @endif
 
 <!-- jQuery first, then Other JS. -->
-<script src="/js/app.js"></script>pt>
+<script src="/js/app.js"></script>
 <!-- Js effects for material design. + Tooltips -->
 <script src="/edpo/js/material.min.js"></script>
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->

@@ -71,6 +71,10 @@ Route::get('/profile/{id}','StudentSettingsController@profile');
 Route::get('/notifications/{id}','StudentNotificationsController@view_notification');
 
 
+Route::get('/student/classes/{class_slug}/{post_slug}','StudentClassesController@view_post');
+Route::get('/teacher/classes/{class_slug}/{post_slug}','TeacherClassesController@view_post');
+
+
 
 
 

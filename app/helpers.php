@@ -1701,5 +1701,10 @@ function create_slug($string)
 
 function get_user_notifications()
 {
+	return Auth::user()->unreadnotifications->take(5);
+}
+
+function get_all_user_notifications()
+{
 	return Auth::user()->unreadnotifications;
 }

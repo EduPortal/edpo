@@ -1,14 +1,4 @@
 @extends('layouts.student.parent')
-@section('in_page_stylesheets')
-<style type="text/css">
-   .td{
-   font-size: 23px !important;
-   vertical-align: middle !important;
-   font-family: Calibri !important;
-   font-weight: lighter !important;
-   }
-</style>
-@endsection
 @section('content')
 <div class="container">
    <div class="row">
@@ -128,7 +118,7 @@
                      <img class="img-fluid" src="/images/{{Auth::user()->gender}}.png" alt="author">
                      @endif
                      <div class="author-date">
-                        <a class="h6 post__author-name fn" href="/teacher/profile">{{$post->learning_class->user->first_name}} {{$post->learning_class->user->last_name}}</a> created a <a class="h6 post__author-name fn" href="/class/post/{{$class->code}}/{{$post->id}}">{{$post->type}}</a>
+                        <a class="h6 post__author-name fn" href="/profile/{{$post->learning_class->user->id}}">{{$post->learning_class->user->first_name}} {{$post->learning_class->user->last_name}}</a> created a <a class="h6 post__author-name fn" href="/student/classes/{{$class->code}}/{{$post->id}}">{{$post->type}}</a>
                         <div class="post__date">
                            <time class="published" datetime="2017-03-24T18:18">
                            {{$post->created_at->toDayDateTimeString()}}

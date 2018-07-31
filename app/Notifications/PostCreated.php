@@ -18,7 +18,7 @@ class PostCreated extends Notification
      *
      * @return void
      */
-    public function __construct($teacher , $class , $student , $post , $attachments)
+    public function __construct($teacher , $class , $student , $post , $attachments="")
     {
         $this->teacher = $teacher;
         $this->class = $class;

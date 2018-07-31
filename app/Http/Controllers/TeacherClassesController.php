@@ -82,6 +82,10 @@ class TeacherClassesController extends Controller
         $pictures = [];
     	$comments_array = array();
     	$class = LearningClass::where('code' , $slug)->first();
+        if ($class == "") {
+            return redirect("/verifying");
+        }
+        
         $students = $class->students;
     	$teacher_information = Auth::user()->personal_information;
     	$posts = $class->posts()->orderBy('posts.created_at' , 'desc')->get();
@@ -181,7 +185,7 @@ class TeacherClassesController extends Controller
         	    	]);
 
             foreach ($class->students as $key => $student) {
-                $student->notify(new PostCreated($class , $student , $post , 0));
+                $student->notify(new PostCreated(Auth::user() , $class , $student , $post , 0));
             }
     	}
 
@@ -229,5 +233,35 @@ class TeacherClassesController extends Controller
         }
 
     	return response()->json(['errors'=>$validator->errors()]);
+    }
+
+    public function view_post($class_slug , $post_slug)
+    {
+        $post = Post::find($post_slug);
+        $class = LearningClass::where('code' , $class_slug)->first();
+        $teacher_information = Auth::user()->personal_information;
+        $comments_array = array();
+        
+        if (count($post->comments) > 0) {
+            $commetators = $post->comments->groupBy('user_id');
+            $avatars_array = array();
+            foreach ($commetators as $key => $commetator) {
+                $user = User::find($key);
+                if (isset($user->personal_information->avatar)) {
+                    $avatar = $user->personal_information->avatar;
+                }
+                else{
+                    $avatar = "/images/".Auth::user()->gender.".png";
+                }
+
+                $commetators_info = [$avatar , $user->first_name];
+                array_push($comments_array, $commetators_info);
+            }
+        }
+        else{
+            array_push($comments_array, null);
+        }
+
+        return view("TeacherViews.post" , compact('teacher_information' , 'post' , 'class' , 'comments_array'));
     }
 }
