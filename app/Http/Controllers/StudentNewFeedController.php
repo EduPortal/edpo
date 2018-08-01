@@ -18,6 +18,7 @@ class StudentNewFeedController extends Controller
 
     public function index()
     {
+        update_last_seen();
     	return "Student";
     }
 

@@ -1,5 +1,8 @@
 <?php
 
+use App\user;
+use Carbon\Carbon;
+
 function getCountries()
 {
 	$countries = [
@@ -1707,4 +1710,72 @@ function get_user_notifications()
 function get_all_user_notifications()
 {
 	return Auth::user()->unreadnotifications;
+}
+
+function getstudents_teacher(){
+   $student_list =[];
+   $classes= Auth::user()->learning_classes;
+   foreach ($classes as $key => $class) {
+       $students=$class->students;
+       foreach ($students as $key => $student) {
+            array_push($student_list, $student->id);
+       }
+   }
+
+   $students_array = array();
+
+   $unique_students = array_unique($student_list);
+   foreach ($unique_students as $key => $unique_student) {
+       $this_student = User::find($unique_student);
+       array_push($students_array, $this_student);
+   }
+
+   return $students_array;
+}
+
+function update_last_seen()
+{
+	$user = Auth::user();
+	$user->last_seen = Carbon::now();
+	$user->save();
+}
+
+function get_all_users_student(){
+    $students_array = [];
+    $classes = Auth::user()->student_learning_classes;
+    foreach ($classes as $key => $class){
+        $students=$class->students;
+        foreach ($students as $key => $student) {
+            array_push($students_array, $student->id);
+        }
+    }
+    $user_array = array();
+    $unique_users = array_unique($students_array);
+    foreach ($unique_users as $unique_user) {
+        if(Auth::user()->id != $unique_user){
+             $this_student = User::find($unique_users);
+              array_push($user_array, $this_student);
+        }
+    }
+    return $user_array;
+}
+
+function get_all_teachers(){
+  $teachers_array = [];
+  $unique_teachers_array = [];
+  $classes = Auth::user()->student_learning_classes;
+ 
+  foreach ($classes as $key => $class){
+      $teacher = $class->user;
+      array_push($teachers_array, $teacher->id);
+  }
+
+  $unique_teachers = array_unique($teachers_array);
+
+  foreach ($unique_teachers as $key => $this_teacher) {
+  	  $current_teacher = User::find($this_teacher);
+  	  array_push($unique_teachers_array, $current_teacher);
+  }
+
+  return $unique_teachers_array;
 }

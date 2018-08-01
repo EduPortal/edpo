@@ -249,80 +249,21 @@
 
 <div class="fixed-sidebar right">
   <div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
-
     <div class="mCustomScrollbar" data-mcs-theme="dark">
-      <ul class="chat-users">
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar67-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar62-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar68-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar69-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-        </li>
-
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar70-sm.jpg" class="avatar">
-            <span class="icon-status disconected"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar64-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar71-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar72-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar63-sm.jpg" class="avatar">
-            <span class="icon-status status-invisible"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar72-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar71-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-        </li>
-      </ul>
+     <ul class="chat-users">
+       @foreach (getstudents_teacher() as $key => $student)
+           <li class="inline-items js-chat-open">
+             <div class="author-thumb">
+              @if($student->personal_information['avatar'] == "")
+               <img title="{{$student->first_name}} {{$student->last_name}}" alt="author" src="/images/{{$student->gender}}.png" class="avatar right-sidebar-img">
+              @else
+                <img title="{{$student->first_name}} {{$student->last_name}}" alt="author" src="{{$student->personal_information['avatar']}}" class="avatar right-sidebar-img">
+              @endif
+               <span class="icon-status online"></span>
+             </div>
+           </li>
+       @endforeach
+     </ul>
     </div>
 
     <div class="search-friend inline-items">
@@ -340,380 +281,24 @@
   <div class="fixed-sidebar-right sidebar--large" id="sidebar-right-1">
 
     <div class="mCustomScrollbar" data-mcs-theme="dark">
-
-      <div class="ui-block-title ui-block-title-small">
-        <a href="#" class="title">Close Friends</a>
-        <a href="#">Settings</a>
-      </div>
-
       <ul class="chat-users">
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar67-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Carol Summers</a>
-            <span class="status">ONLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar62-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Mathilda Brinker</a>
-            <span class="status">AT WORK!</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-        </li>
-
-        <li class="inline-items js-chat-open">
-
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar68-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Carol Summers</a>
-            <span class="status">ONLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-
-        </li>
-
-        <li class="inline-items js-chat-open">
-
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar69-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Michael Maximoff</a>
-            <span class="status">AWAY</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-
-        </li>
-
-        <li class="inline-items js-chat-open">
-
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar70-sm.jpg" class="avatar">
-            <span class="icon-status disconected"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Rachel Howlett</a>
-            <span class="status">OFFLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-
-        </li>
+          @foreach (getstudents_teacher() as $key => $student)
+          <li class="inline-items">
+            <div class="author-thumb">
+              @if($student->personal_information['avatar'] == "")
+               <img title="{{$student->first_name}} {{$student->last_name}}" alt="author" src="/images/{{$student->gender}}.png" class="avatar right-sidebar-img">
+              @else
+                <img title="{{$student->first_name}} {{$student->last_name}}" alt="author" src="{{$student->personal_information['avatar']}}" class="avatar right-sidebar-img">
+              @endif
+              <span class="icon-status online"></span>
+            </div>
+            <div class="author-status">
+              <a href="#" class="h6 author-name">{{$student->first_name}} {{$student->last_name}}</a>
+              <!-- <span class="status">ONLINE</span> -->
+            </div>
+          </li>
+          @endforeach
       </ul>
-
-
-      <div class="ui-block-title ui-block-title-small">
-        <a href="#" class="title">MY FAMILY</a>
-        <a href="#">Settings</a>
-      </div>
-
-      <ul class="chat-users">
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar64-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Sarah Hetfield</a>
-            <span class="status">ONLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-        </li>
-      </ul>
-
-
-      <div class="ui-block-title ui-block-title-small">
-        <a href="#" class="title">UNCATEGORIZED</a>
-        <a href="#">Settings</a>
-      </div>
-
-      <ul class="chat-users">
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar71-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Bruce Peterson</a>
-            <span class="status">ONLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar72-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Chris Greyson</a>
-            <span class="status">AWAY</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar63-sm.jpg" class="avatar">
-            <span class="icon-status status-invisible"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Nicholas Grisom</a>
-            <span class="status">INVISIBLE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar72-sm.jpg" class="avatar">
-            <span class="icon-status away"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Chris Greyson</a>
-            <span class="status">AWAY</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-        </li>
-        <li class="inline-items js-chat-open">
-
-          <div class="author-thumb">
-            <img alt="author" src="/edpo/img/avatar71-sm.jpg" class="avatar">
-            <span class="icon-status online"></span>
-          </div>
-
-          <div class="author-status">
-            <a href="#" class="h6 author-name">Bruce Peterson</a>
-            <span class="status">ONLINE</span>
-          </div>
-
-          <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-            <ul class="more-icons">
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-              </li>
-
-              <li>
-                <svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-              </li>
-            </ul>
-
-          </div>
-        </li>
-      </ul>
-
     </div>
 
     <div class="search-friend inline-items">
@@ -778,213 +363,124 @@
       </div>
     </form>
 
-    <a href="#" class="link-find-friend">Find Friends</a>
+    <!-- <a href="#" class="link-find-friend">Find Friends</a> -->
 
     <div class="control-block">
 
-      <div class="control-icon more has-items">
+      <!-- <div class="control-icon more has-items">
         <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
         <div class="label-avatar bg-purple">2</div>
 
         <div class="more-dropdown more-with-triangle triangle-top-center">
           <div class="ui-block-title ui-block-title-small">
-            <h6 class="title">Chat / Messages</h6>
-            <a href="#">Mark all as read</a>
-            <a href="#">Settings</a>
+            <h6 class="title">Chat / Messages</h6>            
           </div>
 
           <div class="mCustomScrollbar" data-mcs-theme="dark">
-            <ul class="notification-list chat-message">
-              <li class="message-unread">
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar59-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <a href="#" class="h6 notification-friend">Diana Jameson</a>
-                  <span class="chat-message-item">Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...</span>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                </div>
-                <span class="notification-icon">
-                  <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                </span>
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                </div>
-              </li>
-
-              <li>
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar60-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <a href="#" class="h6 notification-friend">Jake Parker</a>
-                  <span class="chat-message-item">Great, I’ll see you tomorrow!.</span>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                </div>
-                <span class="notification-icon">
-                  <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                </span>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                </div>
-              </li>
-              <li>
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar61-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-                  <span class="chat-message-item">We’ll have to check that at the office and see if the client is on board with...</span>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                  </span>
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                </div>
-              </li>
-
-              <li class="chat-group">
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar11-sm.jpg" alt="author">
-                  <img src="/edpo/img/avatar12-sm.jpg" alt="author">
-                  <img src="/edpo/img/avatar13-sm.jpg" alt="author">
-                  <img src="/edpo/img/avatar10-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
-                  <span class="last-message-author">Ed:</span>
-                  <span class="chat-message-item">Yeah! Seems fine by me!</span>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-chat---messages-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-                  </span>
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                </div>
-              </li>
+            <ul class="notification-list">
+              @foreach(get_user_notifications() as $notification)
+                @if(explode("\\", $notification->type)[2] == "PostCreated")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['teacher']['first_name']}} {{$notification->data['teacher']['last_name']}}</b> created a new <b>{{$notification->data['post']['type']}}</b> in <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                @elseif(explode("\\", $notification->type)[2] == "CommentCreated")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['commentator']['first_name']}} {{$notification->data['commentator']['last_name']}}</b> commented on a post in <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                  @elseif(explode("\\", $notification->type)[2] == "ClassJoined")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['student']['first_name']}} {{$notification->data['student']['last_name']}}</b> joined <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                @endif
+              @endforeach
             </ul>
           </div>
 
           <a href="#" class="view-all bg-purple">View All Messages</a>
         </div>
-      </div>
+      </div> -->
 
       <div class="control-icon more has-items">
         <svg class="olymp-thunder-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-thunder-icon"></use></svg>
 
-        <div class="label-avatar bg-primary">8</div>
+        @if(count(get_all_user_notifications()) > 0)
+              <div class="label-avatar bg-primary">{{count(get_all_user_notifications())}}</div>
+            @endif
 
         <div class="more-dropdown more-with-triangle triangle-top-center">
           <div class="ui-block-title ui-block-title-small">
-            <h6 class="title">Notifications</h6>
-            <a href="#">Mark all as read</a>
-            <a href="#">Settings</a>
+            <h6 class="title">Notifications</h6>            
           </div>
 
           <div class="mCustomScrollbar" data-mcs-theme="dark">
             <ul class="notification-list">
-              <li>
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar62-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <div><a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-                  </span>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <svg class="olymp-little-delete"><use xlink:href="/edpo/icons/icons.svg#olymp-little-delete"></use></svg>
-                </div>
-              </li>
-
-              <li class="un-read">
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar63-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <div>You and <a href="#" class="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" class="notification-link">his wall</a>.</div>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">9 hours ago</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-happy-face-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-face-icon"></use></svg>
-                  </span>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <svg class="olymp-little-delete"><use xlink:href="/edpo/icons/icons.svg#olymp-little-delete"></use></svg>
-                </div>
-              </li>
-
-              <li class="with-comment-photo">
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar64-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <div><a href="#" class="h6 notification-friend">Sarah Hetfield</a> commented on your <a href="#" class="notification-link">photo</a>.</div>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 5:32am</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-comments-post-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-                  </span>
-
-                <div class="comment-photo">
-                  <img src="/edpo/img/comment-photo1.jpg" alt="photo">
-                  <span>“She looks incredible in that outfit! We should see each...”</span>
-                </div>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <svg class="olymp-little-delete"><use xlink:href="/edpo/icons/icons.svg#olymp-little-delete"></use></svg>
-                </div>
-              </li>
-
-              <li>
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar65-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <div><a href="#" class="h6 notification-friend">Green Goo Rock</a> invited you to attend to his event Goo in <a href="#" class="notification-link">Gotham Bar</a>.</div>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 5th at 6:43pm</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-happy-face-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-happy-face-icon"></use></svg>
-                  </span>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <svg class="olymp-little-delete"><use xlink:href="/edpo/icons/icons.svg#olymp-little-delete"></use></svg>
-                </div>
-              </li>
-
-              <li>
-                <div class="author-thumb">
-                  <img src="/edpo/img/avatar66-sm.jpg" alt="author">
-                </div>
-                <div class="notification-event">
-                  <div><a href="#" class="h6 notification-friend">James Summers</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
-                  <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 2nd at 8:29pm</time></span>
-                </div>
-                  <span class="notification-icon">
-                    <svg class="olymp-heart-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-heart-icon"></use></svg>
-                  </span>
-
-                <div class="more">
-                  <svg class="olymp-three-dots-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-                  <svg class="olymp-little-delete"><use xlink:href="/edpo/icons/icons.svg#olymp-little-delete"></use></svg>
-                </div>
-              </li>
+              @foreach(get_user_notifications() as $notification)
+                @if(explode("\\", $notification->type)[2] == "PostCreated")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['teacher']['first_name']}} {{$notification->data['teacher']['last_name']}}</b> created a new <b>{{$notification->data['post']['type']}}</b> in <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                @elseif(explode("\\", $notification->type)[2] == "CommentCreated")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['commentator']['first_name']}} {{$notification->data['commentator']['last_name']}}</b> commented on a post in <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                  @elseif(explode("\\", $notification->type)[2] == "ClassJoined")
+                  <a href="/teacher/notifications/{{$notification->id}}">
+                    <li class="notification_li">
+                      <div class="author-thumb">
+                          <img src="{{$notification->data['class']['avatar']}}" alt="author">
+                      </div>
+                      <div class="notification-event">
+                        <div><b>{{$notification->data['student']['first_name']}} {{$notification->data['student']['last_name']}}</b> joined <b>{{$notification->data['class']['name']}}</b>.</div>
+                        <span class="notification-date"><time class="entry-date updated">{{$notification->created_at->diffForHumans()}}</time></span>
+                      </div>
+                    </li>
+                  </a>
+                @endif
+              @endforeach
             </ul>
           </div>
 
-          <a href="#" class="view-all bg-primary">View All Notifications</a>
+          <a href="/teacher/notifications" class="view-all bg-primary">View All Notifications</a>
         </div>
       </div>
 
@@ -1061,7 +557,9 @@
         <a class="nav-link" data-toggle="tab" href="#notification" role="tab">
           <div class="control-icon has-items">
             <svg class="olymp-thunder-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-thunder-icon"></use></svg>
-            <div class="label-avatar bg-primary">8</div>
+            @if(count(get_all_user_notifications()) > 0)
+              <div class="label-avatar bg-primary">{{count(get_all_user_notifications())}}</div>
+            @endif
           </div>
         </a>
       </li>
@@ -1082,9 +580,7 @@
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title">Chat / Messages</h6>
-          <a href="#">Mark all as read</a>
-          <a href="#">Settings</a>
+          <h6 class="title">Chat / Messages</h6>          
         </div>
 
         <ul class="notification-list chat-message">
@@ -1170,9 +666,7 @@
 
       <div class="mCustomScrollbar" data-mcs-theme="dark">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title">Notifications</h6>
-          <a href="#">Mark all as read</a>
-          <a href="#">Settings</a>
+          <h6 class="title">Notifications</h6>          
         </div>
 
         <ul class="notification-list">
@@ -1272,7 +766,7 @@
           </li>
         </ul>
 
-        <a href="#" class="view-all bg-primary">View All Notifications</a>
+        <a href="/teacher/notifications" class="view-all bg-primary">View All Notifications</a>
       </div>
 
     </div>

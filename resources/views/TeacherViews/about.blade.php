@@ -1,4 +1,4 @@
-@extends('layouts.student.parent')
+@extends('layouts.teacher.parent')
 
 @section('content')
 
@@ -87,24 +87,24 @@
       <div class="ui-block-content">
          <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-               @if($student_information['facebook'] != "" || $student_information['twitter'] != "" || $student_information['google_plus'] != "" || $student_information['linkedin'] != "")
-                  @if($student_information['facebook'] != "")
-                  <a href="{{$student_information['facebook']}}" class="social-item bg-facebook">
+               @if($teacher_information['facebook'] != "" || $teacher_information['twitter'] != "" || $teacher_information['google_plus'] != "" || $teacher_information['linkedin'] != "")
+                  @if($teacher_information['facebook'] != "")
+                  <a href="{{$teacher_information['facebook']}}" class="social-item bg-facebook">
                   <i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a>
                   @endif
 
-                  @if($student_information['linkedin'] != "")
-                  <a style="background: #0077B5;" href="{{$student_information['linkedin']}}" class="social-item">
+                  @if($teacher_information['linkedin'] != "")
+                  <a style="background: #0077B5;" href="{{$teacher_information['linkedin']}}" class="social-item">
                   <i aria-hidden="true" class="fa fa-linkedin"></i>Linkedin</a>
                   @endif
 
-                  @if($student_information['twitter'] != "")
-                  <a href="{{$student_information['twitter']}}" class="social-item bg-twitter">
+                  @if($teacher_information['twitter'] != "")
+                  <a href="{{$teacher_information['twitter']}}" class="social-item bg-twitter">
                   <i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a>
                   @endif
                   
-                  @if($student_information['google_plus'] != "")
-                  <a style="background: #d34836;" href="{{$student_information['google_plus']}}" class="social-item">
+                  @if($teacher_information['google_plus'] != "")
+                  <a style="background: #d34836;" href="{{$teacher_information['google_plus']}}" class="social-item">
                   <i class="fa fa-google-plus" aria-hidden="true"></i>Google Plus</a>
                   @endif
                @else
@@ -139,20 +139,20 @@
             <li>
                <span class="title">About Me:</span>
                <span class="text">
-                  {{$student_information['description']}}
+                  {{$teacher_information['description']}}
                </span>
             </li>
             <li>
                <span class="title">Birthday:</span>
-               <span class="text">{{$student_information['birthday']}}</span>
+               <span class="text">{{$teacher_information['birthday']}}</span>
             </li>
             <li>
                <span class="title">Birthplace:</span>
-               <span class="text">{{$student_information['birthplace']}}</span>
+               <span class="text">{{$teacher_information['birthplace']}}</span>
             </li>
             <li>
                <span class="title">Lives in:</span>
-               <span class="text">{{$student_information['city']." , "}} {{$student_information['province']." , "}} {{$student_information['country']}}</span>
+               <span class="text">{{$teacher_information['city']." , "}} {{$teacher_information['province']." , "}} {{$teacher_information['country']}}</span>
             </li>
             <li>
                <span class="title">Occupation:</span>
@@ -168,7 +168,7 @@
             </li>
             <li>
                <span class="title">Status:</span>
-               <span class="text">{{$student_information['marital_status']}}</span>
+               <span class="text">{{$teacher_information['marital_status']}}</span>
             </li>
             <li>
                <span class="title">Email:</span>
@@ -176,7 +176,7 @@
             </li>
             <li>
                <span class="title">Website:</span>
-               <a href="#" class="text">{{$student_information['website']}}</a>
+               <a href="#" class="text">{{$teacher_information['website']}}</a>
             </li>
             <li>
                <span class="title">Phone Number:</span>
@@ -187,5 +187,4 @@
    </div>
 </div>
 
-@include('StudentViews.components.responsive_sidebar')
 @endsection

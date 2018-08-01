@@ -66,13 +66,17 @@ Route::post('/student/class/join','StudentClassesController@join_class');
 Route::get('/student/classes/{slug}','StudentClassesController@open_class');
 Route::post('/student/classes/post/view_attachments','StudentClassesController@view_attachments');
 Route::post('/student/class/post/create_comment','StudentClassesController@create_comment');
-Route::get('/profile/{id}','StudentSettingsController@profile');
+Route::get('/profile/{id}','HomeController@profile');
 
-Route::get('/notifications/{id}','StudentNotificationsController@view_notification');
+Route::get('/student/notifications/{id}','StudentNotificationsController@view_notification');
+Route::get('/student/notifications','StudentNotificationsController@view_all_notification');
+Route::get('/teacher/notifications/{id}','TeacherNotificationsController@view_notification');
+Route::get('/teacher/notifications','TeacherNotificationsController@view_all_notification');
 
 
 Route::get('/student/classes/{class_slug}/{post_slug}','StudentClassesController@view_post');
 Route::get('/teacher/classes/{class_slug}/{post_slug}','TeacherClassesController@view_post');
+Route::get('/chat','TeacherChatController@chat_view');
 
 
 

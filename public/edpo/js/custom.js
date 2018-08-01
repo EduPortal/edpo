@@ -426,3 +426,5 @@ function create_comment(post_id) {
 function toggleComments(post_id) {
 	$(".comment_box_"+post_id).slideToggle("slow");
 }
+
+$(".message_box").animate({ scrollTop: $('.message_box').prop("scrollHeight")}, 1000);

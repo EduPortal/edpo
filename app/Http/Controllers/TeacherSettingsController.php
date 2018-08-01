@@ -22,12 +22,14 @@ class TeacherSettingsController extends Controller
 
     public function profile_settings()
     {
+        update_last_seen();
         $teacher_information = Auth::user()->personal_information;
         return view('TeacherViews.profile_settings' , compact('teacher_information'));
     }
 
     public function save_profile_information(Request $request)
     {
+        update_last_seen();
         $validator = Validator::make($request->all(), [
             'first_name'        =>      'required|string|max:16',
             'last_name'         =>      'required|string|max:16',
@@ -77,6 +79,7 @@ class TeacherSettingsController extends Controller
 
     public function save_hobbies(Request $request)
     {
+        update_last_seen();
         $validator = Validator::make($request->all(), [
             'hobbies'               =>       'min:0',
             'favourite_tv_shows'    =>       'min:0',
@@ -123,6 +126,7 @@ class TeacherSettingsController extends Controller
 
     public function change_avatar(Request $request)
     {
+        update_last_seen();
         $this->validator($request->all())->validate();
         $a = mt_rand(10,50);
         $dp_extension = $request->avatar->extension();
@@ -145,6 +149,7 @@ class TeacherSettingsController extends Controller
 
     public function hobbies_and_interests()
     {
+        update_last_seen();
         $teacher_information    =    Auth::user()->personal_information;
         $hobby                  =    Auth::user()->hobby;
         return view('TeacherViews.hobbies' , compact('teacher_information' , 'hobby'));
@@ -152,6 +157,7 @@ class TeacherSettingsController extends Controller
 
     public function change_password_view()
     {
+        update_last_seen();
         $questions = SecurityQuestion::all();
         $teacher_information    =    Auth::user()->personal_information;
         return view('TeacherViews.change_password' , compact('teacher_information' , 'questions'));
@@ -159,6 +165,7 @@ class TeacherSettingsController extends Controller
 
     public function verify_email(Request $request)
     {
+        update_last_seen();
         if (Auth::user()->email == $request->email) {
             return 1;
         }
@@ -169,6 +176,7 @@ class TeacherSettingsController extends Controller
 
     public function verify_answers(Request $request)
     {
+        update_last_seen();
         $answer_1 = unserializeThisThing(Auth::user()->answer_1);
         $answer_2 = unserializeThisThing(Auth::user()->answer_2);
         $answer_3 = unserializeThisThing(Auth::user()->answer_3);
@@ -183,6 +191,7 @@ class TeacherSettingsController extends Controller
 
     public function change_password(Request $request)
     {
+        update_last_seen();
         $user               =    Auth::user();
         $user->password     =    Hash::make($request->new_password);
         $user->save();

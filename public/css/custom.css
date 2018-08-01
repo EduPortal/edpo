@@ -29,3 +29,40 @@
 	font-family: Calibri !important;
 	font-weight: lighter !important;
 }
+
+textarea{
+	min-height: auto !important;
+}
+
+.message_box{
+	height: 385px;
+	overflow-y: scroll;
+}
+
+.chat-users li{
+    padding: 13px 13px !important;
+}
+
+.right-sidebar-img{
+    height: 45px !important;
+    width: 45px !important;
+}
+
+.birthday-item.badges .skills-item {
+    font-size: 15px !important;
+    min-width: 220px !important;
+    display: block !important;
+    float: right !important;
+    margin-bottom: 0 !important;
+    margin-top: 10px !important;
+}
+
+.unread_notification{
+	background-color: #ff5e3a !important;
+	color: #fff !important;
+}
+
+.unread_notification .author-name{
+	background-color: #ff5e3a !important;
+	color: #fff !important;
+}

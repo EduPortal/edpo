@@ -13,6 +13,7 @@ class TeacherNewsFeedController extends Controller
 
     public function index()
     {
+    	update_last_seen();
     	return "Teacher";
     }
 }

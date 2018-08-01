@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attachment;
 use App\Comment;
 use App\LearningClass;
+use App\Notifications\CommentCreated;
 use App\Notifications\PostCreated;
 use App\Post;
 use App\User;
@@ -23,6 +24,7 @@ class TeacherClassesController extends Controller
 
     public function classes()
     {
+        update_last_seen();
     	$teacher_information = Auth::user()->personal_information;
     	$classes = Auth::user()->learning_classes;
         return view('TeacherViews.classes' , compact('teacher_information' , 'classes'));
@@ -30,6 +32,7 @@ class TeacherClassesController extends Controller
 
     public function create_class(Request $request)
     {
+        update_last_seen();
     	$this->validator($request->all())->validate();
 
     	if ($request->has('class_avatar')) {
@@ -79,6 +82,7 @@ class TeacherClassesController extends Controller
 
     public function open_class($slug)
     {
+        update_last_seen();
         $pictures = [];
     	$comments_array = array();
     	$class = LearningClass::where('code' , $slug)->first();
@@ -137,6 +141,7 @@ class TeacherClassesController extends Controller
 
     public function create_post(Request $request)
     {
+        update_last_seen();
         $class = LearningClass::find($request->class_id);
     	$validator = Validator::make($request->all(), [
             'description'        		=>      'required|string|max:1000',
@@ -195,12 +200,14 @@ class TeacherClassesController extends Controller
 
     public function view_attachments(Request $request)
     {
+        update_last_seen();
     	$post = Post::find($request->id);
     	return $post->attachments;
     }
 
     public function create_comment(Request $request)
     {
+        update_last_seen();
 
     	$validator = Validator::make($request->all(), [
             'comment'        =>      'required|string|max:500',
@@ -212,6 +219,13 @@ class TeacherClassesController extends Controller
         		'post_id' => $request->post_id,
         		'comment' => $request->comment,
         	]);
+
+            $students = getstudents_teacher();
+            $post = Post::find($request->post_id);
+            $class = $post->learning_class;
+            foreach ($students as $key => $student) {
+                $student->notify(new CommentCreated(Auth::user() , $class , $post , $comment));
+            }
 
         	$response_array = array();
 
@@ -237,6 +251,7 @@ class TeacherClassesController extends Controller
 
     public function view_post($class_slug , $post_slug)
     {
+        update_last_seen();
         $post = Post::find($post_slug);
         $class = LearningClass::where('code' , $class_slug)->first();
         $teacher_information = Auth::user()->personal_information;

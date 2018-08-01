@@ -27,12 +27,14 @@ class StudentSettingsController extends Controller
 
     public function profile_settings()
     {
+        update_last_seen();
         $student_information = Auth::user()->personal_information;
         return view('StudentViews.profile_settings' , compact('student_information'));
     }
 
     public function save_profile_information(Request $request)
     {
+        update_last_seen();
         $validator = Validator::make($request->all(), [
             'first_name'        =>      'required|string|max:16',
             'last_name'         =>      'required|string|max:16',
@@ -82,6 +84,7 @@ class StudentSettingsController extends Controller
 
     public function save_hobbies(Request $request)
     {
+        update_last_seen();
         $validator = Validator::make($request->all(), [
             'hobbies'               =>       'min:0',
             'favourite_tv_shows'    =>       'min:0',
@@ -128,6 +131,7 @@ class StudentSettingsController extends Controller
 
     public function change_avatar(Request $request)
     {
+        update_last_seen();
         $this->validator($request->all())->validate();
 
         $a = mt_rand(10,50);
@@ -152,6 +156,7 @@ class StudentSettingsController extends Controller
 
     public function hobbies_and_interests()
     {
+        update_last_seen();
         $student_information    =    Auth::user()->personal_information;
         $hobby                  =    Auth::user()->hobby;
         return view('StudentViews.hobbies' , compact('student_information' , 'hobby'));
@@ -159,6 +164,7 @@ class StudentSettingsController extends Controller
 
     public function change_password_view()
     {
+        update_last_seen();
         $questions = SecurityQuestion::all();
         $student_information    =    Auth::user()->personal_information;
         return view('StudentViews.change_password' , compact('student_information' , 'questions'));
@@ -166,6 +172,7 @@ class StudentSettingsController extends Controller
 
     public function verify_email(Request $request)
     {
+        update_last_seen();
         if (Auth::user()->email == $request->email) {
             return 1;
         }
@@ -176,6 +183,7 @@ class StudentSettingsController extends Controller
 
     public function verify_answers(Request $request)
     {
+        update_last_seen();
         $answer_1 = unserializeThisThing(Auth::user()->answer_1);
         $answer_2 = unserializeThisThing(Auth::user()->answer_2);
         $answer_3 = unserializeThisThing(Auth::user()->answer_3);
@@ -190,19 +198,12 @@ class StudentSettingsController extends Controller
 
     public function change_password(Request $request)
     {
+        update_last_seen();
         $user               =    Auth::user();
         $user->password     =    Hash::make($request->new_password);
         $user->save();
 
         Session::flash('success' , 'Your password has been updated, Successfully!');
         return back();
-    }
-
-    public function profile($id)
-    {
-        $user = User::find($id);
-        $hobbies_and_interests = $user->hobby;
-        $student_information = $user->personal_information;
-        return view("StudentViews.about" , compact('user' , 'student_information' , 'hobbies_and_interests'));
     }
 }
