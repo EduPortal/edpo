@@ -8,6 +8,7 @@ use App\SecurityQuestion;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -198,5 +199,13 @@ class TeacherSettingsController extends Controller
 
         Session::flash('success' , 'Your password has been updated, Successfully!');
         return back();
+    }
+
+    public function search()
+    {
+        if (Input::get('query') != "") {
+            $classes = Auth::user()->learning_classes()->where('name', 'like', '%'.Input::get('query').'%')->get();
+            return $classes;
+        } 
     }
 }

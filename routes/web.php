@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@main');
+// Route::get('/', 'HomeController@main');
+Route::get('/', function (){
+	return redirect("/login");
+});
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -29,9 +32,15 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/verifying','HomeController@verifying');
 
-Route::get('/student/news-feed', 'StudentNewFeedController@index');
-Route::get('/teacher/news-feed','TeacherNewsFeedController@index');
+// Route::get('/student/news-feed', 'StudentNewFeedController@index');
+// Route::get('/teacher/news-feed','TeacherNewsFeedController@index');
 
+Route::get('/student/news-feed', function (){
+	return redirect("/student/classes");
+});
+Route::get('/teacher/news-feed', function (){
+	return redirect("/teacher/classes");
+});
 
 Route::get('/student/settings/profile', 'StudentSettingsController@profile_settings');
 Route::post('/student/settings/save_profile_information', 'StudentSettingsController@save_profile_information');
@@ -77,6 +86,10 @@ Route::get('/teacher/notifications','TeacherNotificationsController@view_all_not
 Route::get('/student/classes/{class_slug}/{post_slug}','StudentClassesController@view_post');
 Route::get('/teacher/classes/{class_slug}/{post_slug}','TeacherClassesController@view_post');
 Route::get('/chat','TeacherChatController@chat_view');
+
+
+Route::post('/student/search','StudentSettingsController@search');
+Route::post('/teacher/search','TeacherSettingsController@search');
 
 
 

@@ -80,11 +80,11 @@
             <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right" data-original-title="OPEN MENU"><use xlink:href="/edpo/icons/icons.svg#olymp-menu-icon"></use></svg>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="/teacher/news-feed">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="/teacher/classes">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
@@ -118,12 +118,12 @@
             <span class="left-menu-title">Collapse Menu</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="/teacher/news-feed">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Newsfeed</span>
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="/teacher/classes">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
@@ -200,12 +200,12 @@
             <span class="left-menu-title">Collapse Menu</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="/teacher/news-feed">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="NEWSFEED"><use xlink:href="/edpo/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
             <span class="left-menu-title">Newsfeed</span>
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="/teacher/classes">
             <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right" data-original-title="MY CLASSES"><use xlink:href="/edpo/icons/icons.svg#olymp-albums-icon"></use></svg>
@@ -355,12 +355,13 @@
 
   <div class="header-content-wrapper">
     <form class="search-bar w-search notification-list friend-requests">
-      <div class="form-group with-button">
-        <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
-        <button>
-          <svg class="olymp-magnifying-glass-icon"><use xlink:href="/edpo/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-        </button>
-      </div>
+       <div class="form-group with-button is-empty">
+          <input id="seach_input" class="form-control" placeholder="Search classes here..." type="text" autocomplete="off">
+           <div id="search_area" class="form-control" style="width: 500px;top: 70px;left: 0px; background: #fff; display: none;">
+              <div class="selectize-dropdown-content">
+              </div>
+           </div>
+       </div>
     </form>
 
     <!-- <a href="#" class="link-find-friend">Find Friends</a> -->
@@ -776,7 +777,7 @@
 
         <form class="search-bar w-search notification-list friend-requests">
           <div class="form-group with-button">
-            <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+            <input class="form-control" placeholder="Search classes here..." type="text">
           </div>
         </form>
 

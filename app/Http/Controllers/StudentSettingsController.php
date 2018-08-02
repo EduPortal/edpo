@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Hobby;
 use App\PersonalInformation;
 use App\SecurityQuestion;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Storage;
@@ -205,5 +206,13 @@ class StudentSettingsController extends Controller
 
         Session::flash('success' , 'Your password has been updated, Successfully!');
         return back();
+    }
+
+    public function search()
+    {
+        if (Input::get('query') != "") {
+            $classes = Auth::user()->student_learning_classes()->where('name', 'like', '%'.Input::get('query').'%')->get();
+            return $classes;
+        } 
     }
 }

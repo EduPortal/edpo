@@ -72,12 +72,12 @@
           </div>
        </div>
        <div class="ui-block-title">
-          <a href="33-YourAccount-Notifications.html" class="h6 title">Notifications</a>
-          <a href="#" class="items-round-little bg-primary">8</a>
+          <a href="/teacher/notifications" class="h6 title">Notifications</a>
+          <a href="#" class="items-round-little bg-primary">{{count(get_all_user_notifications())}}</a>
        </div>
-       <div class="ui-block-title">
+       <!-- <div class="ui-block-title">
           <a href="34-YourAccount-ChatMessages.html" class="h6 title">Chat / Messages</a>
-       </div>
+       </div> -->
     </div>
     <!-- ... end Your Profile  -->
  </div>

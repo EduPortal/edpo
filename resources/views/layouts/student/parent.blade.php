@@ -406,9 +406,13 @@
 
   <div class="header-content-wrapper">
     <form class="search-bar w-search notification-list friend-requests">
-      <div class="form-group with-button">
-        <input class="form-control" placeholder="Search classes here..." type="text">
-      </div>
+       <div class="form-group with-button is-empty">
+          <input id="seach_input" class="form-control" placeholder="Search classes here..." type="text" autocomplete="off">
+           <div id="search_area" class="form-control" style="width: 500px;top: 70px;left: 0px; background: #fff; display: none;">
+              <div class="selectize-dropdown-content">
+              </div>
+           </div>
+       </div>
     </form>
 
     <!-- <a href="#" class="link-find-friend">Find Friends</a> -->

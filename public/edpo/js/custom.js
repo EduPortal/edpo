@@ -428,3 +428,40 @@ function toggleComments(post_id) {
 }
 
 $(".message_box").animate({ scrollTop: $('.message_box').prop("scrollHeight")}, 1000);
+
+$("#seach_input").keyup(function(event) {
+	var query = $("#seach_input").val();
+	var call = getFlag()+"/search";
+	if (query.length > 2) {
+		$.ajax({
+			url: call,
+			type: 'POST',
+			headers: {
+	            "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+	        },
+			data: {'query' : query},
+		})
+		.done(function(results) {
+			if (results.length > 0) {
+				$("#search_area").html("");
+			    $("#search_area").hide();
+				for (var i = 0; i < results.length; i++) {
+					var html_string = '<a href="/teacher/classes/'+results[i].code+'"><div class="inline-items" style="padding: 4%;"> <div class="author-thumb"><img src="'+results[i].avatar+'" alt="avatar"></div><div class="notification-event"><span class="h6 notification-friend">'+results[i].name+'</span></div></div></a>';
+					$("#search_area").append(html_string);
+				}
+			}
+			else{
+				var html_string = '<a href="#"><div class="inline-items" style="padding: 4%;"> <div class="notification-event"><span class="h6 notification-friend">Whoops! no class found.</span></div></div></a>';
+				$("#search_area").html(html_string);
+			}
+			$("#search_area").show();
+		})
+		.fail(function() {
+			console.log("error");
+		});
+	}
+	else{
+		$("#search_area").html("");
+		$("#search_area").hide();
+	}
+});
